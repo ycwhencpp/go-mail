@@ -83,14 +83,17 @@ function load_mailbox(mailbox) {
               read: true,
             }),
           });
+
+          // Show check email and hide other views
           document.querySelector("#check_email").style.display = "block";
           document.querySelector("#compose-view").style.display = "none";
           document.querySelector("#emails-view").style.display = "none";
 
+          // fetching data about that particular email
           fetch(`/emails/${email.id}`)
             .then((response) => response.json())
             .then((email) => {
-              console.log(email);
+              // creating html of the email view
               var view_email = `<p class="email_info archive"><strong>From: </strong> <span> ${email.sender} </span><button class="btn btn-sm btn-outline-primary" id="archive-button" ><i class='bx bx-archive-in' ></i>Archive</button></p>
                          <p class="email_info"><strong>To:</strong> ${email.recipients}</p>
                          <p class="email_info"><strong>Subject:</strong> ${email.subject}</p>
@@ -99,11 +102,17 @@ function load_mailbox(mailbox) {
                          <hr>
                          <p class="email_info">${email.body}</p>`;
 
+              // adding email view to the main div check email
               document.querySelector("#check_email").innerHTML = view_email;
+
+              // adding button text wrt the state of email
               if (email.archived) {
                 document.querySelector("#archive-button").innerHTML = "<i class='bx bx-archive-out' ></i>Unarchive";
               }
+
+              // archiving email if user clicks on archive button
               document.querySelector("#archive-button").onclick = () => {
+                // email is already archived then unarchiving it else archiving it
                 if (email.archived) {
                   fetch(`/emails/${email.id}`, {
                     method: "PUT",
@@ -122,11 +131,18 @@ function load_mailbox(mailbox) {
                 }
               };
 
+              // user can reply to the email when they clicks on reply button
               document.querySelector("#reply-button").onclick = () => {
+                // opening compose email tab
                 compose_email();
+
+                // setting values of recepient, subject and body
                 document.querySelector("#compose-recipients").value = email.sender;
                 document.querySelector("#compose-recipients").disabled = true;
 
+                //  user has replied more than once than handimg body, subject and recepint in differrnt way
+                // otheriwse in different way
+                // took R & E in subject as reference to check whether email has been re replied or not
                 if (email.subject[0] === "R" && email.subject[1] === "e") {
                   document.querySelector("#compose-recipients").value = email.recipients;
                   document.querySelector("#compose-subject").value = email.subject;
