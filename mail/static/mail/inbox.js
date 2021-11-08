@@ -64,7 +64,7 @@ function load_mailbox(mailbox) {
         email_div.classList = "email";
 
         // checking if email has been read or not
-        email.read ? (email_div.style.background = "#DCDCDC") : (email_div.style.background = "white");
+        email.read ? (email_div.style.background = "rgb(229, 228, 226)") : (email_div.style.background = "white");
 
         // creating data inside the email div.
         email_div.innerHTML = `<p class="email_basic"> <strong>${email.sender}</strong>
