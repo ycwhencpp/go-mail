@@ -9,7 +9,7 @@ textarea {
 }
 .email_basic{  
     padding-top: 12px;
-    padding-left:8px;
+    padding-left:8px;   
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -24,4 +24,28 @@ textarea {
 }
 .subject    {
     flex:1;
+}
+.archive{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.archive span{
+    flex:1;
+}
+.archive button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size:15px;
+}
+.archive i{
+    margin-right:5px;
+    color:rgba(16, 146, 233, 0.979);
+    font-size: 24px;
+    
+}
+.archive button:hover i{
+    color:rgba(255, 255, 255, 0.904);
+    
 }
