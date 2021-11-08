@@ -126,14 +126,20 @@ function load_mailbox(mailbox) {
                 compose_email();
                 document.querySelector("#compose-recipients").value = email.sender;
                 document.querySelector("#compose-recipients").disabled = true;
+
                 if (email.subject[0] === "R" && email.subject[1] === "e") {
+                  document.querySelector("#compose-recipients").value = email.recipients;
                   document.querySelector("#compose-subject").value = email.subject;
+                  document.querySelector(
+                    "#compose-body"
+                  ).value = ` ${email.body} \n On ${email.timestamp} <${email.sender}> Wrote: `;
                 } else {
+                  document.querySelector("#compose-recipients").value = email.sender;
                   document.querySelector("#compose-subject").value = `Re: ${email.subject}`;
+                  document.querySelector(
+                    "#compose-body"
+                  ).value = `On ${email.timestamp} <${email.sender}> Wrote: ${email.body}`;
                 }
-                document.querySelector(
-                  "#compose-body"
-                ).value = `On ${email.timestamp} <${email.sender}> Wrote: ${email.body}`;
               };
             });
         };
