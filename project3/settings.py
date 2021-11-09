@@ -29,7 +29,10 @@ SECRET_KEY = '05$4$3aew(8ywondz$g!k4m779pbvn9)euj0zp7-ae*x@4pxr+'
 DEBUG = True
 # DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://go-mail.herokuapp.com/',
+'localhost',
+'127.0.0.1',
+]
 
 
 # Application definition
